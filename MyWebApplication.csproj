@@ -3,22 +3,18 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-	  <NoWarn>CA2016</NoWarn>
+    <ImplicitUsings>enable</ImplicitUsings>	  
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FastEndpoints" Version="5.18.0" />
-    <PackageReference Include="FastEndpoints.Security" Version="5.18.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.13" />
-    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.13" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13">
+    <PackageReference Include="FastEndpoints" Version="5.19.1" />
+    <PackageReference Include="FastEndpoints.Generator" Version="5.19.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="FastEndpoints.Security" Version="5.19.1" />
+    <PackageReference Include="FastEndpoints.Swagger" Version="5.19.1" />
+	  <PackageReference Include="MongoDB.Entities" Version="22.1.0" />
   </ItemGroup>
 
 </Project>
