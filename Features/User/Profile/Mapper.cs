@@ -8,7 +8,13 @@
             {
                 Age = e.Age,
                 Email = e.Email,
-                Name = e.Name
+                Name = e.Name,
+                Address = new()
+                {
+                    City = e.Address.City,
+                    Country = e.Address.Country,
+                    Street = e.Address.Street
+                }
             };
         }
     }

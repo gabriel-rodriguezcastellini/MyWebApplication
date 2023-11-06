@@ -8,6 +8,7 @@ namespace MyWebApplication.Features.User.Profile
         {
             Get("/user/profile");
             Permissions(Allow.User_Profile_View);
+            RequestBinder(new Binder());
         }
 
         public override async Task HandleAsync(Request r, CancellationToken ct)

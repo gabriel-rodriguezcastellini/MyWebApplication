@@ -24,6 +24,7 @@ namespace MyWebApplication.Features.User.Authentication.Login
                 p.Claims.Add(new("UserID", userID));
                 p.Permissions.AddRange(new Allow().AllCodes());
                 p.Permissions.AddRange(Auth.Allow.AllCodes());
+                p.Roles.Add("Manager");
             });
         }
     }

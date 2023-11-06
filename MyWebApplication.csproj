@@ -3,7 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>	  
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PackageProjectUrl></PackageProjectUrl>	  
   </PropertyGroup>
 
   <ItemGroup>

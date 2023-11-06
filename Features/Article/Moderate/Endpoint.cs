@@ -17,10 +17,10 @@
 
             if (article == null)
             {
-                ThrowError("Invalid article!");
+                await SendNotFoundAsync(ct);
             }
 
-            await Data.ModerateArticle(Map.UpdateEntity(request, article));
+            await Data.ModerateArticle(Map.UpdateEntity(request, article!));
             Response.Message = $"The article [{request.Id}] has been approved";
         }
     }

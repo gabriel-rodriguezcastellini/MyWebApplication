@@ -8,6 +8,7 @@ namespace MyWebApplication.Features.User
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
         public int Age { get; set; }
+        public Address Address { get; set; } = null!;
 
         static User()
         {

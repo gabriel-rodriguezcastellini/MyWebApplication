@@ -9,7 +9,13 @@
                 Age = r.Age,
                 Email = r.Email,
                 Password = r.Password, //never store clear passwords in db. always hash/salt before saving.
-                Name = r.Name
+                Name = r.Name,
+                Address = new()
+                {
+                    Street = r.Address.Street,
+                    City = r.Address.City,
+                    Country = r.Address.Country
+                }
             };
         }
     }
