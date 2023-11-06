@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder();
 builder.Services.AddSingleton(typeof(IRequestBinder<>), typeof(MyWebApplication.Binders.RequestBinder<>));
-builder.Services.AddFastEndpoints().AddAuthorization();
+builder.Services.AddFastEndpoints(o => o.IncludeAbstractValidators = true).AddAuthorization();
 builder.Services.AddJWTBearerAuth(builder.Configuration["JWTSigningKey"]!);
 builder.Services.SwaggerDocument();
 WebApplication app = builder.Build();

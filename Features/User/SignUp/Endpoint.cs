@@ -6,10 +6,12 @@
         {
             Post("/user/signup");
             AllowAnonymous();
+            DontThrowIfValidationFails();
         }
 
         public override async Task HandleAsync(Request r, CancellationToken ct)
         {
+            ThrowIfAnyErrors();
             string userID = await Data.CreateUser(Map.ToEntity(r));
 
             if (string.IsNullOrEmpty(userID))
