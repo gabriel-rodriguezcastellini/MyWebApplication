@@ -9,6 +9,8 @@ namespace MyWebApplication.Features.User.Profile
             Get("/user/profile");
             Permissions(Allow.User_Profile_View);
             RequestBinder(new Binder());
+            ResponseCache(60); //cache for 60 seconds
+            Options(x => x.CacheOutput(p => p.Expire(TimeSpan.FromSeconds(60))));
         }
 
         public override async Task HandleAsync(Request r, CancellationToken ct)

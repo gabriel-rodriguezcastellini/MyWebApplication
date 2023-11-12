@@ -26,6 +26,8 @@ namespace MyWebApplication.Features.User.Profile
         public string Email { get; set; } = null!;
         public int Age { get; set; }
         public Address Address { get; set; } = null!;
+        public long Ticks { get; set; }
+        public string Message { get; set; } = null!;
     }
 
     public class Address

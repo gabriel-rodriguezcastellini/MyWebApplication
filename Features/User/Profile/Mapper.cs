@@ -14,7 +14,9 @@
                     City = e.Address.City,
                     Country = e.Address.Country,
                     Street = e.Address.Street
-                }
+                },
+                Ticks = DateTime.UtcNow.Ticks,
+                Message = "this response is cached"
             };
         }
     }
