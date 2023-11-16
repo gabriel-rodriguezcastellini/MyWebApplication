@@ -7,6 +7,8 @@
             Post("/article");
             string[] groupNames = new string[] { "Author" };
             AccessControl(keyName: "Article_Create", behavior: Apply.ToThisEndpoint, groupNames: groupNames);
+            Throttle(hitLimit: 120, durationSeconds: 60);
+            Options(x => x.RequireRateLimiting("limiterPolicy"));
         }
 
         public override async Task HandleAsync(Request request, CancellationToken ct)
