@@ -1,22 +1,21 @@
 ﻿using FluentValidation;
 
-namespace MyWebApplication.Features.Article.Create
+namespace MyWebApplication.Features.Article.Create;
+
+public class Request
 {
-    public class Request
-    {
-        public string Name { get; set; } = null!;
-    }
+    public string Name { get; set; } = null!;
+}
 
-    public class Verifier : Validator<Request>
+public class Verifier : Validator<Request>
+{
+    public Verifier()
     {
-        public Verifier()
-        {
-            _ = RuleFor(x => x.Name).NotEmpty();
-        }
+        _ = RuleFor(x => x.Name).NotEmpty();
     }
+}
 
-    public class Response
-    {
-        public string Message { get; set; } = null!;
-    }
+public class Response
+{
+    public string Message { get; set; } = null!;
 }

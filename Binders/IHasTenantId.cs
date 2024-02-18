@@ -1,7 +1,6 @@
-﻿namespace MyWebApplication.Binders
+﻿namespace MyWebApplication.Binders;
+
+public interface IHasTenantId
 {
-    public interface IHasTenantId
-    {
-        string? TenantId { get; set; }
-    }
+    string? TenantId { get; set; }
 }

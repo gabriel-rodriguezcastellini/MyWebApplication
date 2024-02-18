@@ -1,21 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <PackageProjectUrl></PackageProjectUrl>	  
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<PackageProjectUrl></PackageProjectUrl>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FastEndpoints" Version="5.22.0" />
-    <PackageReference Include="FastEndpoints.Generator" Version="5.22.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="FastEndpoints.Security" Version="5.22.0" />
-    <PackageReference Include="FastEndpoints.Swagger" Version="5.22.0" />
-	  <PackageReference Include="MongoDB.Entities" Version="23.0.1" />
-  </ItemGroup>
+	<PropertyGroup>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>CS1591</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FastEndpoints" Version="5.22.0" />
+		<PackageReference Include="FastEndpoints.ClientGen.Kiota" Version="5.22.0" />
+		<PackageReference Include="FastEndpoints.Generator" Version="5.22.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="FastEndpoints.Security" Version="5.22.0" />
+		<PackageReference Include="FastEndpoints.Swagger" Version="5.22.0" />
+		<PackageReference Include="MongoDB.Entities" Version="23.0.1" />
+	</ItemGroup>
+
+
+	<Target Name="ClientGen" AfterTargets="Build" Condition="'$(Configuration)'=='Release'">
+		<Exec WorkingDirectory="$(RunWorkingDirectory)"
+			  Command="$(RunCommand) --generateclients true"/>
+	</Target>
 
 </Project>

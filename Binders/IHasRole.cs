@@ -1,7 +1,6 @@
-﻿namespace MyWebApplication.Binders
+﻿namespace MyWebApplication.Binders;
+
+public interface IHasRole
 {
-    public interface IHasRole
-    {
-        public string Role { get; set; }
-    }
+    public string Role { get; set; }
 }

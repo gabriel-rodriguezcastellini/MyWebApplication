@@ -1,9 +1,8 @@
-﻿namespace MyWebApplication.Features.Article
+﻿namespace MyWebApplication.Features.Article;
+
+public enum ArticleState
 {
-    public enum ArticleState
-    {
-        Created,
-        Approved,
-        Rejected
-    }
+    Created,
+    Approved,
+    Rejected
 }

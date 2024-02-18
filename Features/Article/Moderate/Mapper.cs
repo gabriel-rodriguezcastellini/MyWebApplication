@@ -1,11 +1,10 @@
-﻿namespace MyWebApplication.Features.Article.Moderate
+﻿namespace MyWebApplication.Features.Article.Moderate;
+
+public class Mapper : Mapper<Request, Response, Article>
 {
-    public class Mapper : Mapper<Request, Response, Article>
+    public override Article UpdateEntity(Request r, Article e)
     {
-        public override Article UpdateEntity(Request r, Article e)
-        {
-            e.ArticleState = ArticleState.Approved;
-            return e;
-        }
+        e.ArticleState = ArticleState.Approved;
+        return e;
     }
 }

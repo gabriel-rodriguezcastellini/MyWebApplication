@@ -1,14 +1,13 @@
-﻿namespace MyWebApplication.Features.Article.Get
+﻿namespace MyWebApplication.Features.Article.Get;
+
+public class Mapper : ResponseMapper<Response, Article>
 {
-    public class Mapper : ResponseMapper<Response, Article>
+    public override Response FromEntity(Article e)
     {
-        public override Response FromEntity(Article e)
+        return new()
         {
-            return new()
-            {
-                Name = e.Name,
-                ArticleState = (ArticleState)e.ArticleState
-            };
-        }
+            Name = e.Name,
+            ArticleState = (ArticleState)e.ArticleState
+        };
     }
 }

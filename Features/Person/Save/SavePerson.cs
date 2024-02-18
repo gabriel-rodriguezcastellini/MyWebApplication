@@ -1,40 +1,41 @@
 ﻿using System.Globalization;
 
-namespace MyWebApplication.Features.Person.Save
+namespace MyWebApplication.Features.Person.Save;
+
+public class SavePerson : EndpointWithMapping<Request, Response, Person>
 {
-    public class SavePerson : EndpointWithMapping<Request, Response, Person>
+    public override void Configure()
     {
-        public override void Configure()
-        {
-            Put("/person");
-        }
+        Put("/person");
+        Tags("include me");
+        Description(x => x.WithName("SavePerson"));
+    }
 
-        public override Task HandleAsync(Request r, CancellationToken ct)
-        {
-            Person entity = MapToEntity(r);
-            Response = MapFromEntity(entity);
-            return SendAsync(Response, cancellation: ct);
-        }
+    public override Task HandleAsync(Request r, CancellationToken ct)
+    {
+        Person entity = MapToEntity(r);
+        Response = MapFromEntity(entity);
+        return SendAsync(Response, cancellation: ct);
+    }
 
-        public override Person MapToEntity(Request r)
+    public override Person MapToEntity(Request r)
+    {
+        return new()
         {
-            return new()
-            {
-                Id = r.Id,
-                DateOfBirth = DateOnly.Parse(r.BirthDay, new CultureInfo("en-US")),
-                FullName = $"{r.FirstName} {r.LastName}"
-            };
-        }
+            Id = r.Id,
+            DateOfBirth = DateOnly.Parse(r.BirthDay, new CultureInfo("en-US")),
+            FullName = $"{r.FirstName} {r.LastName}"
+        };
+    }
 
-        public override Response MapFromEntity(Person e)
+    public override Response MapFromEntity(Person e)
+    {
+        return new()
         {
-            return new()
-            {
-                Id = e.Id,
-                FullName = e.FullName,
-                UserName = $"USR{e.Id:0000000000}",
-                Age = (DateOnly.FromDateTime(DateTime.UtcNow).DayNumber - e.DateOfBirth.DayNumber) / 365,
-            };
-        }
+            Id = e.Id,
+            FullName = e.FullName,
+            UserName = $"USR{e.Id:0000000000}",
+            Age = (DateOnly.FromDateTime(DateTime.UtcNow).DayNumber - e.DateOfBirth.DayNumber) / 365,
+        };
     }
 }

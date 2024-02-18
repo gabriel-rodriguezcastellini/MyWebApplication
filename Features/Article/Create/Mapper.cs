@@ -1,14 +1,13 @@
-﻿namespace MyWebApplication.Features.Article.Create
+﻿namespace MyWebApplication.Features.Article.Create;
+
+public class Mapper : Mapper<Request, Response, Article>
 {
-    public class Mapper : Mapper<Request, Response, Article>
+    public override Article ToEntity(Request r)
     {
-        public override Article ToEntity(Request r)
+        return new()
         {
-            return new()
-            {
-                Name = r.Name,
-                ArticleState = ArticleState.Created
-            };
-        }
+            Name = r.Name,
+            ArticleState = ArticleState.Created
+        };
     }
 }

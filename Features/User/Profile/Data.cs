@@ -1,14 +1,13 @@
 ﻿using MongoDB.Entities;
 
-namespace MyWebApplication.Features.User.Profile
+namespace MyWebApplication.Features.User.Profile;
+
+public static class Data
 {
-    public static class Data
+    public static Task<User> GetUser(string userID)
     {
-        public static Task<User> GetUser(string userID)
-        {
-            return DB.Find<User>()
-                     .MatchID(userID)
-                     .ExecuteSingleAsync()!;
-        }
+        return DB.Find<User>()
+                 .MatchID(userID)
+                 .ExecuteSingleAsync()!;
     }
 }
