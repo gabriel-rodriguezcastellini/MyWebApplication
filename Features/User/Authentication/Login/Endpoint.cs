@@ -1,4 +1,5 @@
 ﻿using MyWebApplication.Features.User.Authentication.RefreshToken;
+using MyWebApplication.PreProcessors;
 
 namespace MyWebApplication.Features.User.Authentication.Login;
 
@@ -17,6 +18,7 @@ public class Endpoint : Endpoint<Request, MyTokenResponse>
         Tags("include me");
         Options(x => x.WithTags("Users"));
         Description(x => x.WithName("Login"));
+        PreProcessor<RequestLogger<Request>>();
     }
 
     public override async Task HandleAsync(Request r, CancellationToken ct)

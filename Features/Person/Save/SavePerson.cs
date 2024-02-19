@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using MyWebApplication.PostProcessors;
+using MyWebApplication.PreProcessors;
+using System.Globalization;
 
 namespace MyWebApplication.Features.Person.Save;
 
@@ -9,13 +11,22 @@ public class SavePerson : EndpointWithMapping<Request, Response, Person>
         Put("/person");
         Tags("include me");
         Description(x => x.WithName("SavePerson"));
+        PreProcessor<SecurityProcessor<Request>>();
+        PostProcessor<ResponseLogger<Request, Response>>();
+        PostProcessor<ExceptionProcessor>();
+        PreProcessor<PreProcessors.StateBag>();
+        PostProcessor<DurationLogger>();
     }
 
-    public override Task HandleAsync(Request r, CancellationToken ct)
+    public override async Task HandleAsync(Request r, CancellationToken ct)
     {
+        StateBag state = ProcessorState<StateBag>();
+        Logger.LogInformation("endpoint executed at {@duration} ms.", state.DurationMillis);
+        await Task.Delay(100, ct);
         Person entity = MapToEntity(r);
         Response = MapFromEntity(entity);
-        return SendAsync(Response, cancellation: ct);
+        Response.Status = state.Status;
+        await SendAsync(Response, cancellation: ct);
     }
 
     public override Person MapToEntity(Request r)
@@ -35,7 +46,7 @@ public class SavePerson : EndpointWithMapping<Request, Response, Person>
             Id = e.Id,
             FullName = e.FullName,
             UserName = $"USR{e.Id:0000000000}",
-            Age = (DateOnly.FromDateTime(DateTime.UtcNow).DayNumber - e.DateOfBirth.DayNumber) / 365,
+            Age = (DateOnly.FromDateTime(DateTime.UtcNow).DayNumber - e.DateOfBirth.DayNumber) / 365
         };
     }
 }

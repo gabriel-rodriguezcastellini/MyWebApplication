@@ -26,8 +26,7 @@
 
 
 	<Target Name="ClientGen" AfterTargets="Build" Condition="'$(Configuration)'=='Release'">
-		<Exec WorkingDirectory="$(RunWorkingDirectory)"
-			  Command="$(RunCommand) --generateclients true"/>
+		<Exec WorkingDirectory="$(RunWorkingDirectory)" Command="$(RunCommand) --generateclients true" />
 	</Target>
 
 </Project>
