@@ -15,10 +15,10 @@ bld.Services
    .AddAuthorization()
    .AddAuthentication(ApikeyAuth._schemeName)
    .AddScheme<AuthenticationSchemeOptions, ApikeyAuth>(ApikeyAuth._schemeName, null);
+bld.Services.AddJWTBearerAuth(bld.Configuration["JWTSigningKey"]!);
 bld.Services
    .SwaggerDocument(o =>
    {
-       o.EnableJWTBearerAuth = false;
        o.DocumentSettings = s =>
        {
            _ = s.AddAuth(ApikeyAuth._schemeName, new()

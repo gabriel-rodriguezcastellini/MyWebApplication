@@ -5,6 +5,9 @@ namespace MyWebApplication.Features.Article.Create;
 public class Request
 {
     public string Name { get; set; } = null!;
+
+    [FromClaim("UserID")]
+    public string UserID { get; set; } = null!;
 }
 
 public class Verifier : Validator<Request>

@@ -1,4 +1,6 @@
-﻿namespace MyWebApplication.Features.Article.Create;
+﻿using MyWebApplication.Events;
+
+namespace MyWebApplication.Features.Article.Create;
 
 public class Endpoint : Endpoint<Request, Response, Mapper>
 {
@@ -23,6 +25,14 @@ public class Endpoint : Endpoint<Request, Response, Mapper>
             ThrowError("Article creation failed!");
         }
 
-        Response.Message = $"The article [{request.Name}] has been created with ID: {articleId}";
+        await new ArticleCreatedEvent
+        {
+            ArticleID = articleId,
+            ArticleName = request.Name,
+            UserID = request.UserID
+        }.PublishAsync(Mode.WaitForNone, cancellation: ct);
+        await SendOkAsync(
+            new Response { Message = $"The article [{request.Name}] has been created with ID: {articleId}" },
+            ct);
     }
 }
