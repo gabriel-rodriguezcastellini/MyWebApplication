@@ -25,14 +25,7 @@ public class Response
     public string Name { get; set; } = null!;
     public string Email { get; set; } = null!;
     public int Age { get; set; }
-    public Address Address { get; set; } = null!;
+    public string Address { get; set; } = null!;
     public long Ticks { get; set; }
     public string Message { get; set; } = null!;
-}
-
-public class Address
-{
-    public string Street { get; set; } = null!;
-    public string City { get; set; } = null!;
-    public string Country { get; set; } = null!;
 }

@@ -10,8 +10,10 @@ using NSwag;
 using System.Text.Json.Serialization;
 
 WebApplicationBuilder bld = WebApplication.CreateBuilder();
+
 bld.Services
    .AddFastEndpoints()
+   .AddResponseCaching()
    .AddAuthorization()
    .AddAuthentication(ApikeyAuth._schemeName)
    .AddScheme<AuthenticationSchemeOptions, ApikeyAuth>(ApikeyAuth._schemeName, null);
@@ -65,6 +67,7 @@ o => //endpoint customization settings
 });
 app.UseAuthentication()
    .UseAuthorization()
+   .UseResponseCaching()
    .UseFastEndpoints(c =>
    {
        c.Endpoints.ShortNames = true;

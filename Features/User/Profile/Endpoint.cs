@@ -18,6 +18,8 @@ public class Endpoint : Endpoint<Request, Response, Mapper>
 
     public override async Task HandleAsync(Request r, CancellationToken ct)
     {
+        AddError("an error added by the endpoint!");
+
         User? user = await Data.GetUser(r.UserID);
 
         if (user is null)
@@ -26,7 +28,7 @@ public class Endpoint : Endpoint<Request, Response, Mapper>
         }
         else
         {
-            await SendAsync(Map.FromEntity(user), cancellation: ct);
+            await SendAsync(await Map.FromEntityAsync(user, ct), cancellation: ct);
         }
     }
 }
